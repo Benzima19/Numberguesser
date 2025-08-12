@@ -1,0 +1,105 @@
+:root {
+  --bg: radial-gradient(1200px 800px at 80% -10%, rgba(0,255,224,0.2), transparent 50%),
+        radial-gradient(1000px 800px at -10% 90%, rgba(255,0,199,0.18), transparent 50%),
+        #0a0b10;
+  --text: #e8faff;
+  --muted: #9ad2df;
+  --card: rgba(16, 19, 30, 0.55);
+  --panel-muted: rgba(16,19,30,0.35);
+  --border: rgba(255,255,255,0.08);
+  --accent: #00ffe0;
+  --accent-strong: #00c2ff;
+  --shadow: 0 10px 40px rgba(0, 255, 224, 0.08), inset 0 0 0 1px rgba(255,255,255,0.03);
+  --radius: 14px;
+  --font: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* Base */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  color: var(--text);
+  background: var(--bg);
+  background-attachment: fixed;
+  font-family: var(--font);
+  letter-spacing: .2px;
+  animation: bg-move 18s linear infinite;
+}
+@keyframes bg-move {
+  0% { background-position: 0 0, 0 0, 0 0; }
+  100% { background-position: 200px 120px, -200px -80px, 0 0; }
+}
+
+.wrap { max-width: 980px; margin: 40px auto; padding: 0 20px; }
+h1 { text-align: center; margin: 0 0 24px; font-size: 32px; text-shadow: 0 0 10px rgba(0,255,224,0.25); }
+.accent { color: var(--accent); }
+.round { text-align: center; margin-bottom: 8px; font-weight: 800; font-size: 34px; }
+.target { text-align: center; color: var(--muted); margin-bottom: 24px; font-size: 16px; }
+
+.boards {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: stretch;
+}
+.panel {
+  border: 1px solid var(--border); border-radius: var(--radius); padding: 24px;
+  background: var(--card); box-shadow: var(--shadow);
+}
+.panel--muted { background: var(--panel-muted); }
+.panel h3 { margin: 0 0 4px; font-size: 18px; text-align: center; }
+.score { text-align: center; color: var(--muted); margin-bottom: 20px; }
+
+.bigbox {
+  width: 120px; height: 120px; border: 1px solid var(--border); border-radius: 12px;
+  display: grid; place-items: center; margin: 0 auto 12px; font-size: 40px; font-weight: 700;
+  background: rgba(255,255,255,0.04);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03);
+}
+.bigbox.muted { background: rgba(255,255,255,0.025); color: #7ebfcb; }
+
+/* Stepper */
+.stepper { display: flex; justify-content: center; gap: 0; margin-bottom: 16px; }
+.stepper button {
+  width: 56px; height: 38px; font-size: 20px; font-weight: 700; cursor: pointer;
+  border: 1px solid var(--border); color: var(--accent);
+  background: linear-gradient(180deg, rgba(0,255,224,0.16), rgba(255,0,199,0.08));
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+}
+.stepper button:first-child { border-radius: 18px 0 0 18px; }
+.stepper button:last-child { border-radius: 0 18px 18px 0; border-left-width: 0; }
+.stepper button:disabled { opacity: .45; cursor: not-allowed; }
+
+/* Primary: Make a Guess (accessible contrast) */
+.primary {
+  display: block; width: 260px; height: 46px; margin: 0 auto;
+  background: linear-gradient(180deg, var(--accent), var(--accent-strong));
+  color: #0b1220; font-weight: 800; border: 1px solid var(--border); border-radius: 10px; cursor: pointer;
+  text-shadow: none;
+}
+.primary:disabled { opacity: .5; cursor: not-allowed; }
+.primary:focus-visible,
+.primary:hover { box-shadow: 0 0 0 3px rgba(0,255,224,0.35); outline: none; }
+
+/* Secondary: Next Round (outline) */
+.footer { display: grid; place-items: center; margin: 34px 0 0; }
+.next {
+  width: 220px; height: 52px; border-radius: 10px; font-weight: 800; font-size: 16px;
+  border: 2px solid var(--accent); background: transparent;
+  color: var(--accent); cursor: not-allowed;
+}
+.next.enabled { cursor: pointer; }
+.next.enabled:hover { box-shadow: 0 0 8px var(--accent); }
+
+/* Avatars */
+.avatar-wrap { display: grid; place-items: center; margin-bottom: 12px; }
+.avatar {
+  width: 84px; height: 84px; border-radius: 12px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  background: rgba(255,255,255,0.06);
+  image-rendering: pixelated; /* crisp for pixel art */
+}
+
+/* Responsive tweak */
+@media (max-width: 720px) {
+  .boards { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="degen">
+<head>
+  <meta charset="UTF-8" />
+  <title>Number Guesser</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- JetBrains Mono -->
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap">
+    <h1>Number Guesser <span class="accent">[degen]</span></h1>
+
+    <div class="round" id="roundTitle">Round 1</div>
+    <div class="target" id="targetLabel">Target Number: ?</div>
+
+    <section class="boards">
+      <!-- Computer panel -->
+      <div class="panel panel--muted">
+        <h3>Computer</h3>
+        <div class="avatar-wrap">
+          <img id="computerAvatar" class="avatar" src="assets/computer.png" alt="Computer avatar" />
+        </div>
+        <div class="score">Score: <span id="computerScore">0</span></div>
+        <div class="bigbox muted" id="computerGuess">?</div>
+      </div>
+
+      <!-- Human panel -->
+      <div class="panel">
+        <h3>You</h3>
+        <div class="avatar-wrap">
+          <img id="humanAvatar" class="avatar" src="assets/human.png" alt="Your avatar" />
+        </div>
+        <div class="score">Score: <span id="humanScore">0</span></div>
+        <div class="bigbox" id="yourGuess">1</div>
+
+        <div class="stepper">
+          <button id="dec" aria-label="Decrease guess">−</button>
+          <button id="inc" aria-label="Increase guess">+</button>
+        </div>
+
+        <button class="primary" id="makeGuess">Make a Guess</button>
+      </div>
+    </section>
+
+    <div class="footer">
+      <button class="next" id="nextRound" disabled>Next Round</button>
+    </div>
+  </div>
+
+  <!-- Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+  <!-- JS -->
+  <script src="script.js"></script>
+</body>
+</html>
